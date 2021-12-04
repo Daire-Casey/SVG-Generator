@@ -1,0 +1,6 @@
+@startuml
+!include .\\Program.puml
+!include .\\Shapes.puml
+!include .\\obj\MCD\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.puml
+!include .\\obj\MCD\Debug\net5.0\a4.AssemblyInfo.puml
+@enduml

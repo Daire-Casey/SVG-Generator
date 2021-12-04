@@ -1,0 +1,36 @@
+@startuml
+class Program {
+    {static} Main(args:string[]) : void
+    + {static} Add(input:string, canvas:Canvas, user:User) : void
+}
+class Canvas {
+    + AddShape(shp:Shape) : void
+    + DelShape() : Shape
+    + GetSVG() : string
+    + Export() : void
+}
+class User {
+    + UndoCount : int <<get>>
+    + RedoCount : int <<get>>
+    + User()
+    + Reset() : void
+    + Action(command:Command) : void
+    + Undo() : void
+    + Redo() : void
+}
+abstract class Command {
+    + {abstract} Do() : void
+    + {abstract} Undo() : void
+}
+class AddShapeCommand {
+    + AddShapeCommand(s:Shape, c:Canvas)
+    + <<override>> Do() : void
+    + <<override>> Undo() : void
+}
+class "Stack`1"<T> {
+}
+Canvas o-> "canvas<Shape>" "Stack`1"
+Command <|-- AddShapeCommand
+AddShapeCommand --> "shape" Shape
+AddShapeCommand --> "canvas" Canvas
+@enduml

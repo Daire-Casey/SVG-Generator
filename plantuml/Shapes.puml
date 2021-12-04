@@ -1,0 +1,70 @@
+@startuml
+class Shapes {
+    + {static} UpdateCircle(shp:Circle, x:int, y:int, r:int, s:string, sw:string, f:string) : void
+    + {static} UpdateRectangle(shp:Rectangle, x:int, y:int, w:int, l:int, s:string, sw:string, f:string) : void
+    + {static} UpdateEllipse(shp:Ellipse, x:int, y:int, r:int, ry:int, s:string, sw:string, f:string) : void
+    + {static} UpdateLine(shp:Line, x:int, y:int, x2:int, y2:int, s:string, sw:string, f:string) : void
+    + {static} UpdatePolyline(shp:Polyline, x:int, y:int, p:List<int>, s:string, sw:string, f:string) : void
+    + {static} UpdatePolygon(shp:Polygon, x:int, y:int, p:List<int>, s:string, sw:string, f:string) : void
+}
+class Shape {
+    + X : int <<get>> <<set>>
+    + Y : int <<get>> <<set>>
+    + S : string <<get>> <<set>>
+    + SW : string <<get>> <<set>>
+    + F : string <<get>> <<set>>
+    + Shape()
+    + Shape(x:int, y:int, s:string, sw:string, f:string)
+}
+class Circle {
+    + R : int <<get>> <<set>>
+    + Circle()
+    + Circle(r:int)
+    + Circle(x:int, y:int, r:int, s:string, sw:string, f:string)
+    + <<override>> ToString() : string
+}
+class Rectangle {
+    + W : int <<get>> <<set>>
+    + L : int <<get>> <<set>>
+    + Rectangle()
+    + Rectangle(w:int, l:int)
+    + Rectangle(x:int, y:int, w:int, l:int, s:string, sw:string, f:string)
+    + <<override>> ToString() : string
+}
+class Ellipse {
+    + RY : int <<get>> <<set>>
+    + Ellipse()
+    + Ellipse(ry:int)
+    + Ellipse(x:int, y:int, r:int, ry:int, s:string, sw:string, f:string)
+    + <<override>> ToString() : string
+}
+class Line {
+    + X2 : int <<get>> <<set>>
+    + Y2 : int <<get>> <<set>>
+    + Line()
+    + Line(x2:int, y2:int)
+    + Line(x:int, y:int, x2:int, y2:int, s:string, sw:string, f:string)
+    + <<override>> ToString() : string
+}
+class Polyline {
+    + Polyline()
+    + Polyline(x:int, y:int, p:List<int>, s:string, sw:string, f:string)
+    + <<override>> ToString() : string
+}
+class Polygon {
+    + Polygon()
+    + Polygon(x:int, y:int, p:List<int>, s:string, sw:string, f:string)
+    + <<override>> ToString() : string
+}
+class "List`1"<T> {
+}
+Shape o-> "rand" Random
+Shape <|-- Circle
+Shape <|-- Rectangle
+Circle <|-- Ellipse
+Shape <|-- Line
+Shape <|-- Polyline
+Polyline o-> "pLine<int>" "List`1"
+Shape <|-- Polygon
+Polygon o-> "pLine<int>" "List`1"
+@enduml
